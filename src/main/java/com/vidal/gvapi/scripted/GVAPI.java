@@ -1,13 +1,14 @@
 package com.vidal.gvapi.scripted;
 
 import com.vidal.gvapi.api.IGVAPI;
+import com.vidal.gvapi.api.IKiHandler;
 
 public class GVAPI implements IGVAPI {
     private static GVAPI instance;
 
     private final FormSkillHandler formSkillHandler = FormSkillHandler.getInstance();
     private final DBCSkillHandler dbcSkillHandler = DBCSkillHandler.getInstance();
-    private final String kiHandler = "new MiHandler()";
+    private final DBCKiHandler dbcKiHandler = DBCKiHandler.getInstance();
     private final String mentorHandler = "new MentorHandler()";
 
     public static GVAPI getInstance() {
@@ -30,8 +31,13 @@ public class GVAPI implements IGVAPI {
     }
 
     @Override
+    public IKiHandler getDBCKiHandler() {
+        return dbcKiHandler;
+    }
+
+    @Override
     public String getCustomKiHandler() {
-        return kiHandler;
+        return "";
     }
 
     @Override

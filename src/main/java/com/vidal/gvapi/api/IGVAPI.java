@@ -5,6 +5,8 @@ public interface IGVAPI {
 
     ISkillHandler getDBCSkillHandler();
 
+    IKiHandler getDBCKiHandler();
+
     String getCustomKiHandler();
 
     String getMentorHandler();

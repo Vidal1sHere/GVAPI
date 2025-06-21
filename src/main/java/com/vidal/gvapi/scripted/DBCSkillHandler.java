@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 import static JinRyuu.JRMCore.JRMCoreH.DBCSkillNames;
-import static JinRyuu.JRMCore.server.config.dbc.JGConfigUltraInstinct.CONFIG_UI_LEVELS;
 
 public class DBCSkillHandler implements ISkillHandler {
     public static DBCSkillHandler Instance = new DBCSkillHandler();
