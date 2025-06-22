@@ -3,7 +3,7 @@ package com.vidal.gvapi.utils;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class DBCKiData {
+public class DBCTechData {
     public static String[] DBCAttackNames = {
         "Kamehameha", "Ki Blast", "Spirit Bomb",
         "Destructo Disk", "Makankosappo", "Masenko",

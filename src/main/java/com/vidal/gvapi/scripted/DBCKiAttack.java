@@ -1,7 +1,7 @@
 package com.vidal.gvapi.scripted;
 
 import com.vidal.gvapi.api.IDBCKiAttack;
-import com.vidal.gvapi.utils.DBCKiData;
+import com.vidal.gvapi.utils.DBCTechData;
 import noppes.npcs.api.INbt;
 import kamkeel.npcdbc.api.IDBCAddon;
 
@@ -13,12 +13,12 @@ public class DBCKiAttack implements IDBCKiAttack {
 
     private DBCKiAttack(String name) {
         this.name = name;
-        this.id = DBCKiData.getKiAttackIndex(this.name);
-        this.tpCost = DBCKiData.DBCAttackTPCosts[this.id];
+        this.id = DBCTechData.getKiAttackIndex(this.name);
+        this.tpCost = DBCTechData.DBCAttackTPCosts[this.id];
     }
 
     public static DBCKiAttack create(String name) {
-        if (DBCKiData.getKiAttackIndex(name) == -1)
+        if (DBCTechData.getKiAttackIndex(name) == -1)
             return null;
 
         return new DBCKiAttack(name);

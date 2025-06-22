@@ -1,12 +1,11 @@
 package com.vidal.gvapi.scripted;
 
-import JinRyuu.DragonBC.common.DBCKiTech;
 import com.vidal.gvapi.api.IDBCKiAttack;
 import com.vidal.gvapi.api.IKiHandler;
 import kamkeel.npcdbc.api.IDBCAddon;
 import noppes.npcs.api.INbt;
 
-import com.vidal.gvapi.utils.DBCKiData;
+import com.vidal.gvapi.utils.DBCTechData;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,10 +26,10 @@ public class DBCKiHandler implements IKiHandler {
     }
 
     private void loadAllAttacks() {
-        Stream<String> DBCNames = Arrays.stream(DBCKiData.DBCAttackNames);
+        Stream<String> DBCNames = Arrays.stream(DBCTechData.DBCAttackNames);
 
         DBCNames.forEach(name -> {
-            int id = DBCKiData.getKiAttackIndex(name);
+            int id = DBCTechData.getKiAttackIndex(name);
 
             DBCKiAttack attack = DBCKiAttack.create(name);
             attacks.put(id, attack);
