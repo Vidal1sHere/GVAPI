@@ -23,7 +23,7 @@ public class CustomKiAttack implements ICustomKiAttack {
         this.data = CustomKiData.create(name, id, settings);
     }
 
-    public CustomKiAttack() {
+    private CustomKiAttack() {
         this.name = "Unnamed Attack";
         this.id = -1;
         this.tpCost = 0;
@@ -32,6 +32,10 @@ public class CustomKiAttack implements ICustomKiAttack {
 
     public static CustomKiAttack create(String name, int id, int tpCost, Map<String, Object> settings) {
         return new CustomKiAttack(name, id, tpCost, settings);
+    }
+
+    public static CustomKiAttack create() {
+        return new CustomKiAttack();
     }
 
     @Override

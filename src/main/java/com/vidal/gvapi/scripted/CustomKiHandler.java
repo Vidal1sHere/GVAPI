@@ -35,6 +35,75 @@ public class CustomKiHandler implements IKiHandler {
         return CustomKiAttack.create(name, id, tpCost, new HashMap<String, Object>());
     }
 
+    public CustomKiAttack createFromString(String data) {
+        String[] splitData = data.split(";");
+
+        int id;
+        String name = splitData[0];
+        String idName = splitData[2];
+        int tpCost = 0;
+        byte type = (byte) Integer.parseInt(splitData[3]);
+        byte speed = (byte) Integer.parseInt(splitData[4]);
+        byte damage = (byte) Integer.parseInt(splitData[5]);
+        boolean effect = Integer.parseInt(splitData[6]) == 1;
+        byte color = (byte) Integer.parseInt(splitData[10]);
+        byte charge = (byte) Integer.parseInt(splitData[12]);
+        byte fire = (byte) Integer.parseInt(splitData[13]);
+        byte moving = (byte) Integer.parseInt(splitData[14]);
+
+        try {
+            id = Integer.parseInt(idName.trim());
+        } catch (NumberFormatException e) {
+            id = dataWriter.getUnusedId();
+        }
+
+        HashMap<String, Object> settings = new HashMap<>();
+
+        settings.put("type", type);
+        settings.put("speed", speed);
+        settings.put("damage", damage);
+        settings.put("color", color);
+        settings.put("effect", effect);
+
+        HashMap<String, Object> sounds = new HashMap<>();
+        sounds.put("charge", charge);
+        sounds.put("fire", fire);
+        sounds.put("moving", moving);
+        settings.put("sounds", sounds);
+
+        HashMap<String, Object> upgrades;
+
+        if (splitData.length > 15) {
+            upgrades = getKiUpgradeData(data);
+        } else {
+            upgrades = new HashMap<>();
+            upgrades.put("speed", 0);
+            upgrades.put("damageIncrease", 0);
+            upgrades.put("energyReduction", 0);
+            upgrades.put("castTime", 0);
+            upgrades.put("cooldown", 0);
+            upgrades.put("density", 0);
+            upgrades.put("size", 0);
+        }
+
+        settings.put("upgrades", upgrades);
+
+        return CustomKiAttack.create(name, id, tpCost, settings);
+    }
+
+    private HashMap<String, Object> getKiUpgradeData(String data) {
+        HashMap<String, Object> upgrades = new HashMap<>();
+        String[] dataSplit = data.split(";")[19].split(",");
+        String[] dataNames = {"speed", "damageIncrease", "energyReduction", "castTime", "cooldown", "density", "size"};
+
+        for (int i = 0; i < dataSplit.length; i++) {
+            int upgrade = Integer.parseInt(dataSplit[i]);
+            upgrades.put(dataNames[i], upgrade);
+        }
+
+        return upgrades;
+    }
+
     public void load() {
         dataWriter.clear();
         attacks = dataWriter.getDataMap();
@@ -56,7 +125,7 @@ public class CustomKiHandler implements IKiHandler {
                 if (!file.isFile() || !file.getName().endsWith(".json"))
                     continue;
                 try {
-                    CustomKiAttack attack = new CustomKiAttack();
+                    CustomKiAttack attack = CustomKiAttack.create();
                     NBTTagCompound nbt = NBTJsonUtil.LoadFile(file);
                     attack.readFromNBT(nbt);
                     attack.name = file.getName().substring(0, file.getName().length() - 5);
@@ -201,6 +270,17 @@ public class CustomKiHandler implements IKiHandler {
         CustomKiAttack atk = (CustomKiAttack) attack;
 
         saveAttack(atk);
+    }
+
+    public void registerFromSlot(IDBCAddon player, Integer slot) {
+        slot = Math.max(1, Math.min(4, slot));
+
+        String tech = player.getNbt().getCompound("PlayerPersisted").getString("jrmcTech" + slot);
+        if (tech == null || tech.trim().isEmpty())
+            return;
+
+        CustomKiAttack attack = createFromString(tech);
+        registerKiAttack(attack);
     }
 
     @Override
