@@ -58,7 +58,6 @@ public class CustomKiHandler implements IKiHandler {
                 try {
                     CustomKiAttack attack = new CustomKiAttack();
                     NBTTagCompound nbt = NBTJsonUtil.LoadFile(file);
-                    LogWriter.info(nbt);
                     attack.readFromNBT(nbt);
                     attack.name = file.getName().substring(0, file.getName().length() - 5);
 
