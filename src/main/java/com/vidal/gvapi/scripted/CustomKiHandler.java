@@ -218,17 +218,9 @@ public class CustomKiHandler implements IKiHandler {
 
     public void deleteKiAttack(CustomKiAttack attack) {
         if (attack != null) {
-            CustomKiAttack foundForm = this.attacks.remove(attack.getID());
-            if (foundForm != null && foundForm.name != null) {
-                File dir = dataWriter.getDir();
-                for (File file : dir.listFiles()) {
-                    if (!file.isFile() || !file.getName().endsWith(".json"))
-                        continue;
-                    if (file.getName().equals(foundForm.name + ".json")) {
-                        file.delete();
-                        break;
-                    }
-                }
+            CustomKiAttack foundAttack = this.attacks.remove(attack.getID());
+            if (foundAttack != null && foundAttack.getName() != null) {
+                dataWriter.deleteFile(foundAttack.getName());
                 dataWriter.saveDataLoadMap();
             }
         }
