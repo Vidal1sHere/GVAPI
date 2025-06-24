@@ -9,6 +9,7 @@ public class GVAPI implements IGVAPI {
     private final FormSkillHandler formSkillHandler = FormSkillHandler.getInstance();
     private final DBCSkillHandler dbcSkillHandler = DBCSkillHandler.getInstance();
     private final DBCKiHandler dbcKiHandler = DBCKiHandler.getInstance();
+    private final CustomKiHandler customKiHandler = CustomKiHandler.getInstance();
     private final String mentorHandler = "new MentorHandler()";
 
     public static GVAPI getInstance() {
@@ -36,8 +37,8 @@ public class GVAPI implements IGVAPI {
     }
 
     @Override
-    public String getCustomKiHandler() {
-        return "";
+    public IKiHandler getCustomKiHandler() {
+        return customKiHandler;
     }
 
     @Override

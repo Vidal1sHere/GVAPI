@@ -2,7 +2,7 @@ package com.vidal.gvapi.api;
 
 import kamkeel.npcdbc.api.IDBCAddon;
 
-public interface IDBCKiAttack {
+public interface IDBCKiAttack extends IDataFragment {
 
     void setName(String name);
 

@@ -1,5 +1,8 @@
 package com.vidal.gvapi.api;
 
+import net.minecraft.nbt.NBTTagCompound;
+import noppes.npcs.api.INbt;
+
 public interface ICustomKiData {
     void setName(String name);
 
@@ -25,15 +28,19 @@ public interface ICustomKiData {
 
     byte getColor();
 
-    ISounds getSounds();
+    ICustomKiSounds getSounds();
 
-    IUpgrades getUpgrades();
+    ICustomKiUpgrades getUpgrades();
 
-    void setSounds(ISounds sounds);
+    void setSounds(ICustomKiSounds sounds);
 
-    void setUpgrades(IUpgrades upgrades);
+    void setUpgrades(ICustomKiUpgrades upgrades);
 
-    interface ISounds {
+    NBTTagCompound writeToNBT();
+
+    void readFromNBT(NBTTagCompound nbt);
+
+    interface ICustomKiSounds {
         void setCharge(byte charge);
         void setFire(byte fire);
         void setMoving(byte moving);
@@ -43,11 +50,12 @@ public interface ICustomKiData {
         byte getMoving();
     }
 
-    interface IUpgrades {
+    interface ICustomKiUpgrades {
         void setSpeed(byte speed);
         void setDamageIncrease(byte damageIncrease);
         void setEnergyReduction(byte energyReduction);
         void setCastTime(byte castTime);
+        void setCooldown(byte cooldown);
         void setDensity(byte density);
         void setSize(byte size);
 
@@ -55,6 +63,7 @@ public interface ICustomKiData {
         byte getDamageIncrease();
         byte getEnergyReduction();
         byte getCastTime();
+        byte getCooldown();
         byte getDensity();
         byte getSize();
     }

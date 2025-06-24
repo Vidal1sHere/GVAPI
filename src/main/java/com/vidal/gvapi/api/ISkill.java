@@ -3,7 +3,7 @@ package com.vidal.gvapi.api;
 
 import kamkeel.npcdbc.api.IDBCAddon;
 
-public interface ISkill {
+public interface ISkill extends IDataFragment {
 
     void setName(String name);
 

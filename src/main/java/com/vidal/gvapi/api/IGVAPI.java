@@ -7,7 +7,7 @@ public interface IGVAPI {
 
     IKiHandler getDBCKiHandler();
 
-    String getCustomKiHandler();
+    IKiHandler getCustomKiHandler();
 
     String getMentorHandler();
 }

@@ -1,15 +1,13 @@
 package com.vidal.gvapi;
 
+import com.vidal.gvapi.scripted.CustomKiHandler;
+import cpw.mods.fml.common.event.*;
 import noppes.npcs.api.AbstractNpcAPI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = GVAPI.MODID, version = "1.0.0", name = "GVAPI", acceptedMinecraftVersions = "[1.7.10]", acceptableRemoteVersions = "*")
 public class GVAPI {
@@ -33,6 +31,11 @@ public class GVAPI {
         proxy.init(event);
 
         AbstractNpcAPI.Instance().addGlobalObject("GVAPI", new com.vidal.gvapi.scripted.GVAPI());
+    }
+
+    @Mod.EventHandler
+    public void setAboutToStart(FMLServerAboutToStartEvent event) {
+        CustomKiHandler.getInstance().load();
     }
 
     @Mod.EventHandler

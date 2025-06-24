@@ -4,6 +4,7 @@ import com.vidal.gvapi.api.ISkill;
 import kamkeel.npcdbc.api.IDBCAddon;
 import kamkeel.npcdbc.api.form.IForm;
 import kamkeel.npcdbc.controllers.FormController;
+import net.minecraft.nbt.NBTTagCompound;
 import noppes.npcs.scripted.CustomNPCsException;
 
 public class FormSkill implements ISkill {
@@ -128,5 +129,25 @@ public class FormSkill implements ISkill {
     @Override
     public int getMindCost() {
         return this.mindCost;
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT() {
+        NBTTagCompound compound = new NBTTagCompound();
+
+        compound.setString("name", name);
+        compound.setInteger("ID", id);
+        compound.setInteger("tpCost", tpCost);
+        compound.setInteger("mindCost", mindCost);
+
+        return compound;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        name = compound.getString("name");
+        id = compound.getInteger("ID");
+        tpCost = compound.getInteger("tpCost");
+        mindCost = compound.getInteger("mindCost");
     }
 }

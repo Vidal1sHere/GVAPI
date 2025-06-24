@@ -3,6 +3,7 @@ package com.vidal.gvapi.scripted;
 import com.vidal.gvapi.api.ISkill;
 import kamkeel.npcdbc.api.IDBCAddon;
 import kamkeel.npcdbc.util.DBCUtils;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,5 +174,25 @@ public class DBCSkill implements ISkill {
         }
 
         return level;
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT() {
+        NBTTagCompound compound = new NBTTagCompound();
+
+        compound.setString("name", name);
+        compound.setInteger("ID", id);
+        compound.setInteger("tpCost", tpCost);
+        compound.setInteger("mindCost", mindCost);
+
+        return compound;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        name = compound.getString("name");
+        id = compound.getInteger("ID");
+        tpCost = compound.getInteger("tpCost");
+        mindCost = compound.getInteger("mindCost");
     }
 }
