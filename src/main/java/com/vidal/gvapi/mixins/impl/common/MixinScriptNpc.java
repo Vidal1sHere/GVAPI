@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = ScriptNpc.class, remap = false)
 public abstract class MixinScriptNpc<T extends EntityNPCInterface> extends ScriptLiving<T> implements ICustomNpc {
 
-    @Shadow
+    @Shadow(remap = false)
     public EntityNPCInterface npc;
 
     public MixinScriptNpc(T entity) {

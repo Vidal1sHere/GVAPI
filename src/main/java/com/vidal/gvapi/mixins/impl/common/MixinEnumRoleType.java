@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Mixin(EnumRoleType.class)
+@Mixin(value = EnumRoleType.class, remap = false)
 @Unique
 public abstract class MixinEnumRoleType {
 
@@ -23,6 +23,7 @@ public abstract class MixinEnumRoleType {
         throw new AssertionError();
     }
 
+    @Unique
     private static EnumRoleType gvapi$addVariant(final String name) {
         ArrayList<EnumRoleType> variants = new ArrayList<>(Arrays.asList(MixinEnumRoleType.$VALUES));
         EnumRoleType newType = gvapi$invokeInit(name, variants.size());

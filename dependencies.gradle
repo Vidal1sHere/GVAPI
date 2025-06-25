@@ -34,7 +34,7 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.4-GTNH:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.58-GTNH:dev")
 
     devOnlyNonPublishable(rfg.deobf(project.files("libs/CustomNPC-Plus-1.10.1.jar")))
     implementation rfg.deobf(project.files("libs/nashorn.jar"))

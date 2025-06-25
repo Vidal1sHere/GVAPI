@@ -10,15 +10,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(DataAdvanced.class)
+@Mixin(value = DataAdvanced.class, remap = false)
 public abstract class MixinDataAdvanced {
 
-    @Shadow
+    @Shadow(remap = false)
     public EnumRoleType role;
-    @Shadow
+    @Shadow(remap = false)
     public EntityNPCInterface npc;
 
-    @Inject(method = "setRole", at = @At("TAIL"))
+    @Inject(method = "setRole", at = @At("TAIL"), remap = false)
     private void updateRoleSetting(int i, CallbackInfo ci) {
         // TODO change this if statement to this when you add mentor class
         // if (this.role == RoleTypeHelper.mentor() && !(this.npc.roleInterface instanceof MentorClassHere))
