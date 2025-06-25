@@ -1,4 +1,4 @@
-package com.vidal.gvapi.mixins.impl.common;
+package com.vidal.gvapi.mixins.late.impl.common;
 
 import com.vidal.gvapi.mixins.RoleTypeHelper;
 import noppes.npcs.DataAdvanced;

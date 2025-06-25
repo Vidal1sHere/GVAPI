@@ -1,4 +1,4 @@
-package com.vidal.gvapi.mixins.impl.client;
+package com.vidal.gvapi.mixins.late.impl.client;
 
 import com.vidal.gvapi.mixins.RoleTypeHelper;
 import net.minecraft.nbt.NBTTagCompound;

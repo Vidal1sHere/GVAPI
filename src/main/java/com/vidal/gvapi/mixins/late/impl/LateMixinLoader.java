@@ -1,4 +1,4 @@
-package com.vidal.gvapi.mixins;
+package com.vidal.gvapi.mixins.late.impl;
 
 import com.gtnewhorizon.gtnhmixins.ILateMixinLoader;
 import com.gtnewhorizon.gtnhmixins.LateMixin;
