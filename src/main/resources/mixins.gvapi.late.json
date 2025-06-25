@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.7.11",
-  "package": "com.vidal.gvapi.mixins.impl",
+  "package": "com.vidal.gvapi.mixins.late.impl",
   "refmap": "mixins.gvapi.refmap.json",
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
