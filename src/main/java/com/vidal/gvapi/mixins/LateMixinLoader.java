@@ -25,7 +25,6 @@ public class LateMixinLoader implements ILateMixinLoader {
         }
 
         mixins.add("common.MixinDataAdvanced");
-        mixins.add("common.MixinEntityNpcInterface");
         mixins.add("common.MixinScriptNpc");
         mixins.add("common.MixinEnumRoleType");
 
